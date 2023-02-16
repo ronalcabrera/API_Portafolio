@@ -1,9 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
-from modelos import denso,CNN,CNN_AD_DO
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 origins = [
     "https://ronalcabrera.github.io",
@@ -20,18 +23,6 @@ app.add_middleware(
 )
 
 @app.get('/', response_class = HTMLResponse)
-async def mensaje():
-        return 'Api para consumir mis modelos'
-
-@app.get('/denso')
-async def mensaje():
-        return denso
-
-@app.get('/CNN')
-async def mensaje():
-        return CNN
-
-@app.get('/CNN_AD_DO')
-async def mensaje():
-        return CNN_AD_DO
+async def home(request: Request):
+        return templates.TemplateResponse("index.html", {"request": request})
 

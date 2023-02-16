@@ -1,0 +1,33 @@
+#resultado, #resultado2, #resultado3 {
+  color:#ccc;
+  font-weight:  bold;
+  font-size:  6rem;
+  text-align: center;
+  display:  inline-block;
+}
+
+body {  
+    background-color: #22272e;
+    color:#ccc;
+    font-family: verdana;
+    font-size: 75%;
+  }
+
+table {
+  margin: 0 auto;
+}
+
+table, th, tr, td {
+  border: 1px solid #ccc;
+}
+
+th {
+  padding: 10px;
+}
+
+
+.canvas-container {
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  background-color: goldenrod;
+}
