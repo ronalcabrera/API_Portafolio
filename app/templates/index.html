@@ -218,15 +218,15 @@ var modelo3 = null;
   //Cargar modelo
   (async () => {
     console.log("Cargando modelo 1...");
-    modelo = await tf.loadLayersModel("https://github.com/ronalcabrera/ronalcabrera.github.io/blob/main/exportacion/modelo_denso/model.json");
+    modelo = await tf.loadLayersModel("https://raw.githubusercontent.com/ronalcabrera/ronalcabrera.github.io/main/exportacion/modelo_denso/model.json");
     console.log("Modelo 1 cargado...");
 
     console.log("Cargando modelo 2...");
-    modelo2 = await tf.loadLayersModel("https://github.com/ronalcabrera/ronalcabrera.github.io/blob/main/exportacion/modelo_CNN/model.json");
+    modelo2 = await tf.loadLayersModel("https://raw.githubusercontent.com/ronalcabrera/ronalcabrera.github.io/main/exportacion/modelo_CNN/model.json");
     console.log("Modelo 2 cargado...");
 
     console.log("Cargando modelo 3...");
-    modelo3 = await tf.loadLayersModel("https://github.com/ronalcabrera/ronalcabrera.github.io/blob/main/exportacion/modelo_CNN_AD_DO/model.json");
+    modelo3 = await tf.loadLayersModel("https://raw.githubusercontent.com/ronalcabrera/ronalcabrera.github.io/main/exportacion/modelo_CNN_AD_DO/model.json");
     console.log("Modelo 3 cargado...");
 })();
 </script>

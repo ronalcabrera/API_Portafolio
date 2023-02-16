@@ -1,28 +1,18 @@
-from fastapi import FastAPI, Request
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
+from flask import Flask, jsonify, request, render_template
+from flask_cors import CORS, cross_origin
+import sklearn
+import joblib
 
-app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+ 
+app = Flask(__name__)
+CORS(app)
 
-origins = [
-    "https://ronalcabrera.github.io",
-    "http://localhost",
-    "http://localhost:8080",
-]
+@cross_origin
+@app.route('/')
+def home():
+    return render_template('index.html')
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-@app.get('/', response_class = HTMLResponse)
-async def home(request: Request):
-        return templates.TemplateResponse("index.html", {"request": request})
+if __name__ == '__main__':
+    #app.run()
+    app.run(debug=True)
 
