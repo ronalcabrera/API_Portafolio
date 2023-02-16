@@ -8,15 +8,15 @@ app = FastAPI()
 async def mensaje():
         return 'Api para consumir mis modelos'
 
-@app.get('/denso', response_class = HTMLResponse)
+@app.get('/denso')
 async def mensaje():
         return denso
 
-@app.get('/CNN', response_class = HTMLResponse)
+@app.get('/CNN')
 async def mensaje():
         return CNN
 
-@app.get('/CNN_AD_DO', response_class = HTMLResponse)
+@app.get('/CNN_AD_DO')
 async def mensaje():
         return CNN_AD_DO
 
