@@ -1,18 +1,47 @@
-from flask import Flask, jsonify, request, render_template
-from flask_cors import CORS, cross_origin
-import sklearn
-import joblib
+######################################################################################################################
+#                                                       Librerias
+######################################################################################################################
 
- 
-app = Flask(__name__)
-CORS(app)
+# Librerias tratamiento datos
+import numpy as np
 
-@cross_origin
-@app.route('/')
-def home():
-    return render_template('index.html')
+# Librerias para crear API
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+from fastapi.middleware.cors import CORSMiddleware
 
-if __name__ == '__main__':
-    #app.run()
-    app.run(debug=True)
+#Librerias para cargar modelo
+import keras
+from keras import layers
 
+######################################################################################################################
+#                                                       API
+######################################################################################################################
+
+app = FastAPI()
+
+origins = [
+    "http://localhost.tiangolo.com",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:8080",
+    "http://www.ronalcabrera.github.io"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"])
+
+@app.get('/', response_class=HTMLResponse)
+async def mensaje():
+        return 'API predicciones'
+
+@app.get('/prediccion_denso({tensor4})',)
+async def prediccion_denso(tensor4):
+        # Recreo el modelo
+        modelo_denso = keras.experimental.load_from_saved_model(
+        'https://github.com/ronalcabrera/ronalcabrera.github.io/blob/main/Modelos/exportacion/modelo_denso/model.json')
+
+        return modelo_denso.predict(tensor4)
